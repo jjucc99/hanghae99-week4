@@ -17,6 +17,16 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
     public Restaurant registerRestaurant(RestaurantDto restaurantDto) {
+        validatedRestuarant(restaurantDto);
+
+        Restaurant restaurant = new Restaurant(restaurantDto);
+        return restaurantRepository.save(restaurant);
+    }
+
+    public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+    private void validatedRestuarant(RestaurantDto restaurantDto) {
         int minOrderPrice = restaurantDto.getMinOrderPrice();
         int deliveryFee = restaurantDto.getDeliveryFee();
 
@@ -35,12 +45,6 @@ public class RestaurantService {
         if (deliveryFee % 500 !=0) {
             throw new IllegalArgumentException("500d원 단위로 입력해 주세요");
         }
-
-        Restaurant restaurant = new Restaurant(restaurantDto);
-        return restaurantRepository.save(restaurant);
-    }
-
-    public List<Restaurant> findAll() {
-        return restaurantRepository.findAll();
     }
 }
+

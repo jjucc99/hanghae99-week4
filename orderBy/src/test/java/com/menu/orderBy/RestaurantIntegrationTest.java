@@ -2,6 +2,7 @@ package com.menu.orderBy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.menu.orderBy.repository.RestaurantRepository;
 import lombok.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +23,21 @@ class RestaurantIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+
     private HttpHeaders headers;
     private ObjectMapper mapper = new ObjectMapper();
 
     private final List<RestaurantDto> registeredRestaurants = new ArrayList<>();
+
+//    @Autowired
+//    private RestaurantRepository restaurantRepository;
+
+//    @AfterAll
+//    public void afterEach() {
+//        for (RestaurantDto dto : registeredRestaurants) {
+//            restaurantRepository.deleteRestaurantByName(dto.getName());
+//        }
+//    }
 
     @BeforeEach
     public void setup() {

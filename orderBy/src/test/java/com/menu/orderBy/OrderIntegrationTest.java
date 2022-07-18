@@ -2,7 +2,8 @@ package com.menu.orderBy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.menu.orderBy.FoodIntegrationTest;
+import com.menu.orderBy.repository.OrderRepository;
+import com.menu.orderBy.repository.RestaurantRepository;
 import lombok.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,14 @@ class OrderIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
     private HttpHeaders headers;
     private ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     private RestaurantDto registeredRestaurant;
 

@@ -1,5 +1,6 @@
 package com.menu.orderBy.model.requsetDto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
